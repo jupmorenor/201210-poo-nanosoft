@@ -80,11 +80,11 @@ public class Estudiante
     //-----------------------------------------------------------------
 	
 	/**
-	 * Crea un nuevo estudiante
+	 * Crea un nuevo estudiante <br>
 	 * <b>post: </b> El estudiante queda registrado con estado en espera <br> 
 	 * mientras se le asigna un cupo en el sistema
 	 */
-	public Estudiante(String nombre, String codigo, String estacion, ArrayList horario)
+	public Estudiante(String nombre, String codigo, String estacion, ArrayList<Horario> horario)
 	{
 		this.nombre = nombre;
 		this.codigo = codigo;
