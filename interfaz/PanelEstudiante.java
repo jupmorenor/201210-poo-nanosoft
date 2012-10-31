@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -22,6 +23,7 @@ public class PanelEstudiante extends JPanel implements ActionListener
 	private static final String HORARIO = "HORARIO";
 
 	private DialogoEstudiante ventana;
+	private ArrayList<Horario> horarios;
 	
 	private JLabel labelNombre;
 	private JLabel labelCodigo;
@@ -68,9 +70,8 @@ public class PanelEstudiante extends JPanel implements ActionListener
 		add(aceptar); add(cancelar);	
 	}
 	
-	public Estudiante agregar(Estudiante estudiante)
+	public Estudiante agregar()
 	{
-		ArrayList<Horario> horario;
 		horario = new ArrayList<Horario>();
 		//TODO agregar los horarios
 		return new Estudiante(txtNom.getText(), txtCod.getText(), txtEst.getText(), horario);
@@ -85,13 +86,50 @@ public class PanelEstudiante extends JPanel implements ActionListener
 	
 	public boolean esValido()
 	{
-		//if(txtNom.getText())
+		if(txtNom.getText().length()==0)
+		{
+			JOptionPane.showMessageDialog( this, "Debe ingresar el nombre del estudiante", "Error", JOptionPane.ERROR_MESSAGE );
+            return false;
+		}
+		if(txtCod.getText().length()==0)
+		{
+			JOptionPane.showMessageDialog( this, "Debe ingresar el codigo del estudiante", "Error", JOptionPane.ERROR_MESSAGE );
+            return false;
+		}
+		if(txtEst.getText().length()==0)
+		{
+			JOptionPane.showMessageDialog( this, "Debe ingresar la estacion de abordaje del estudiante", "Error", JOptionPane.ERROR_MESSAGE );
+            return false;
+		}
+		/*if(horarios.isEmpty())
+		{
+			JOptionPane.showMessageDialog( this, "Debe ingresar al menos un horario del estudiante", "Error", JOptionPane.ERROR_MESSAGE );
+            return false;
+		}*/
+		return true;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+	public void actionPerformed(ActionEvent e) 
+	{
+		if(e.getActionCommand().equals(ACEPTAR))
+		{
+			ventana.aceptar();
+		}
+		else
+		{
+			ventana.cancelar();
+		}
+	}
+	
+	public void bloquearNombre()
+	{
+		txtNom.setEditable(false);
+	}
+	
+	public void buscarEstudiante(String cod)
+	{
+		//TODO
 	}
 
 }
